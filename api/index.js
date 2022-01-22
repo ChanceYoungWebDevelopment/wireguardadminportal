@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
     res.send('hit wga api')
 })
 
-app.post('/api/addpeer', (req, res) => {
+app.post('/addpeer', (req, res) => {
     const peer = {
         name: req.body.client_name,
         ip: req.body.ip_address,
@@ -54,7 +54,6 @@ app.post('/api/addpeer', (req, res) => {
         "'" +
         ')'
 
-    console.log(querystring)
     pool.query(querystring, (err, resp) => {
         if (err) {
             console.log(err)
