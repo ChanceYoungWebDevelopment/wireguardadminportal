@@ -32,8 +32,8 @@ app.post('/addpeer', (req, res) => {
     const values = [
         peer.name,
         peer.ip,
-        peer.allowed,
         peer.date,
+        peer.allowed,
         peer.pubkey,
         peer.privkey,
     ]
