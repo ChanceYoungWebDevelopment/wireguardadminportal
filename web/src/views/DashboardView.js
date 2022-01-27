@@ -29,7 +29,7 @@ const DashboardView = () => {
     return (
         <div className="container">
             <div className="row">
-                <div className="col">{currentStatus}</div>
+                <pre className="col">{currentStatus}</pre>
                 <div className="col">
                     <button
                         className="btn btn-primary"
