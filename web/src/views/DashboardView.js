@@ -29,8 +29,8 @@ const DashboardView = () => {
     return (
         <div className="container">
             <div className="row">
-                <pre className="col">{currentStatus}</pre>
-                <div className="col">
+                <pre className="col-10">{currentStatus}</pre>
+                <div className="col-2">
                     <button
                         className="btn btn-primary"
                         onClick={onRestartService}
