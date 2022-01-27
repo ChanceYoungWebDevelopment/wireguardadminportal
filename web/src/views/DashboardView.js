@@ -26,10 +26,6 @@ const DashboardView = () => {
             setSuccessfulRestart(false)
         }
     }
-    //TODO:
-    //show service status in a card
-    //show restart button
-    //show addclient buttons -> conditionally render add form
     return (
         <div className="container">
             <div className="row">

@@ -13,5 +13,13 @@ export const restartWireguard = async () => {
 
 export const showWireguardStatus = async () => {
     const results = await axios.get('/api/wgservice')
-    if (results.status === 200) return results.data
+    if (results.status === 200) return format_status(results.data)
+}
+
+const format_status = (status_string) => {
+    const words = ['Active:', 'since', 'Docs:', 'Process:', 'Main PID:']
+    const positions = words.map((word) => {
+        return status_string.search(word)
+    })
+    console.log(positions)
 }

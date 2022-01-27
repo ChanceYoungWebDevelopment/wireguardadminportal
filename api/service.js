@@ -1,7 +1,6 @@
 var express = require('express')
 var router = express.Router()
-var exec = require('child_process').exec,
-    child
+var exec = require('child_process').exec
 
 // define the home page route
 router.get('/', function (req, res) {
