@@ -15,6 +15,7 @@ const DashboardView = () => {
         const dashboardQueryRunner = setInterval(() => {
             getStatusAsync()
         }, 60000)
+        getStatusAsync()
         return () => {
             clearInterval(dashboardQueryRunner)
         }
