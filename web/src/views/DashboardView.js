@@ -6,14 +6,18 @@ const DashboardView = () => {
     const [addPeer, setAddPeer] = useState(false)
     const [successfulRestart, setSuccessfulRestart] = useState(false)
     const [currentStatus, setCurrentStatus] = useState('')
-
+    const getStatusAsync = async () => {
+        const status = await showWireguardStatus()
+        setCurrentStatus(status)
+    }
     useEffect(() => {
-        async function getStatusAsync() {
-            const status = await showWireguardStatus()
-            setCurrentStatus(status)
+        const dashboardQueryRunner = setInterval(() => {
+            getStatusAsync()
+        }, 2000)
+        return () => {
+            clearInterval(dashboardQueryRunner)
         }
-        getStatusAsync()
-    })
+    }, [])
 
     const onAddPeer = () => {
         setAddPeer(!addPeer)
