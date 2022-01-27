@@ -4,3 +4,14 @@ export const addNewPeer = async (newPeer) => {
     if (results.status === 200) return true
     else return false
 }
+
+export const restartWireguard = async () => {
+    const results = await axios.get('/api/wgservice/restart')
+    if (results.status === 200) return true
+    else return false
+}
+
+export const showWireguardStatus = async () => {
+    const results = await axios.get('/api/wgservice')
+    if (results.status === 200) return results
+}

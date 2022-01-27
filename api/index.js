@@ -1,17 +1,11 @@
 const express = require('express')
 const app = express()
 const port = process.env.WGA_PORT || 3500
-const Pool = require('pg').Pool
-
-const pool = new Pool({
-    user: process.env.WGA_POSTGRES_USER,
-    host: process.env.WGA_POSTGRES_HOST,
-    database: process.env.WGA_POSTGRES_DB,
-    password: process.env.WGA_POSTGRES_PASSWORD,
-    port: 5432,
-})
+const wgservice = require('./service')
+const pool = require('./pgPoolCreator')
 
 app.use(express.json())
+app.use('/wgservice', wgservice)
 
 app.get('/', (req, res) => {
     res.send('hit wga api')

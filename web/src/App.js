@@ -1,11 +1,9 @@
-import WireguardInfoForm from './input/WireguardInfoForm'
+import DashboardView from './views/DashboardView'
 
+//TODO:
+//Implement react router
 function App() {
-    return (
-        <div className="d-flex justify-content-center">
-            <WireguardInfoForm />
-        </div>
-    )
+    return <DashboardView />
 }
 
 export default App
