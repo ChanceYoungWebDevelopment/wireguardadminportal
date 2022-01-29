@@ -37,6 +37,10 @@ const generateKeys = (client_name) => {
 }
 
 // const grantPeerAccess = (peer_to_add) => {
+//Needs:
+//publickey of client
+//ADDRESS of client
+
 //     return
 // }
 

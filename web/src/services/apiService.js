@@ -7,11 +7,13 @@ export const addNewPeer = async (newPeer) => {
 
 export const restartWireguard = async () => {
     const results = await axios.get('/api/wgservice/restart')
+    console.log(results)
     if (results.status === 200) return true
     else return false
 }
 
 export const showWireguardStatus = async () => {
     const results = await axios.get('/api/wgservice')
+    console.log(results)
     if (results.status === 200) return results.data
 }
