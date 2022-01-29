@@ -1,10 +1,9 @@
 const { execSync } = require('child_process')
 
 const getWireguardStatus = () => {
-    const process = execSync('systemctl status wg-quick@wg0.service', {
+    return execSync('systemctl status wg-quick@wg0.service', {
         uid: 1000,
     })
-    return process
 }
 
 const restartWireguardService = () =>
@@ -18,17 +17,11 @@ const generateKeys = (client_name) => {
 
     const privkey = execSync(
         `cat ~/wireguardadmininfo/clientkeys/${lowered_name}/privatekey`,
-        { uid: 1000 },
-        function (error, stdout, stderr) {
-            return stdout
-        }
+        { uid: 1000 }
     )
     const pubkey = execSync(
         `cat ~/wireguardadmininfo/clientkeys/${lowered_name}/publickey`,
-        { uid: 1000 },
-        function (error, stdout, stderr) {
-            return stdout
-        }
+        { uid: 1000 }
     )
 
     return { pubkey, privkey }
