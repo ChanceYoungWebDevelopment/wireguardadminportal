@@ -14,6 +14,6 @@ export const restartWireguard = async () => {
 
 export const showWireguardStatus = async () => {
     const results = await axios.get('/api/wgservice')
-    console.log(results)
+    console.log(results.data)
     if (results.status === 200) return results.data
 }
