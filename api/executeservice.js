@@ -2,8 +2,9 @@ const { exec } = require('child_process')
 
 const getWireguardStatus = () => {
     const process = exec('systemctl status wg-quick@wg0.service', { uid: 1000 })
-    console.log(process.stdout)
-    return process.stdout
+    process.stdout.on('data', (data) => {
+        return data
+    })
 }
 
 const restartWireguardService = () =>
