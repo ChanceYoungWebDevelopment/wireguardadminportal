@@ -21,24 +21,21 @@ const WireGuardInfoForm = (props) => {
                 value
             )
     )
-    const allowed_range = useInput('Allowed IP Range')
-    const pubkey = useInput('Client Public Key', 'Cannot be empty')
-    const privkey = useInput('Client Private Key', 'Cannot be empty')
+    const allowed_range = useInput(
+        'Allowed IP Range',
+        'Please enter a valid ip address',
+        (value) =>
+            /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(
+                value
+            )
+    )
     const onSubmitHandler = async (e) => {
         e.preventDefault()
-        if (
-            (name.isValid,
-            ip.isValid,
-            allowed_range.isValid,
-            pubkey.isValid,
-            privkey.isValid)
-        ) {
+        if ((name.isValid, ip.isValid, allowed_range.isValid)) {
             const newClient = new wgpeer(
                 name.value,
                 ip.value,
-                allowed_range.value,
-                pubkey.value,
-                privkey.value
+                allowed_range.value
             )
             setWasSubmitted(true)
             const success = await addNewPeer(newClient)
@@ -50,8 +47,6 @@ const WireGuardInfoForm = (props) => {
             name.reset()
             ip.reset()
             allowed_range.reset()
-            pubkey.reset()
-            privkey.reset()
         }
     }
 
@@ -62,8 +57,6 @@ const WireGuardInfoForm = (props) => {
                 <TextInput inputControl={name} />
                 <TextInput inputControl={ip} />
                 <TextInput inputControl={allowed_range} />
-                <TextInput inputControl={pubkey} />
-                <TextInput inputControl={privkey} />
                 <button type="submit" className="btn btn-primary">
                     Submit
                 </button>
