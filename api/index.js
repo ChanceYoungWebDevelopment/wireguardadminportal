@@ -20,6 +20,13 @@ app.post('/addpeer', (req, res) => {
         pubkey: req.body.client_public_key,
         privkey: req.body.client_private_key,
     }
+    if (peer.pubkey === '' || peer.privkey === '') {
+        //run child process to generate these suckers
+    }
+    // mkdir peer.name
+    // $ wg genkey | tee peer.name/privatekey | wg pubkey > peer.name/publickey
+    // peer.privkey = stdout cat > peer.name/privatekey
+    // peer.pubkey = stdout cat > peer.name/publickey
 
     const query = `insert into wireguard_info(client_name,ip_address,date_added,allowed_ip_range,client_pubkey,client_privkey) 
                     values($1, $2, $3,$4,$5,$6)`

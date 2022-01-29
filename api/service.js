@@ -25,4 +25,14 @@ router.get('/restart', function (req, res) {
     )
 })
 
+//TODO:
+// pull last peer.name and return result.rows[0]
+// wg set wg0 peer pulled.publickey allowed ips pulled.allowed_ips etc...
+// generate the client configfile:
+// vpn_ip = process.env.WHATEVER
+// Handlebars.compile(sometemplatefile)
+// template({VPN_IP: process.env.WHATEVER, })
+// /peer.name/config
+// res.sendfile(peer.name/config)
+
 module.exports = router

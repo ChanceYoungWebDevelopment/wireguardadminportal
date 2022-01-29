@@ -22,16 +22,8 @@ const WireGuardInfoForm = (props) => {
             )
     )
     const allowed_range = useInput('Allowed IP Range')
-    const pubkey = useInput(
-        'Client Public Key',
-        'Cannot be empty',
-        (value) => value.trim() !== ''
-    )
-    const privkey = useInput(
-        'Client Private Key',
-        'Cannot be empty',
-        (value) => value.trim() !== ''
-    )
+    const pubkey = useInput('Client Public Key', 'Cannot be empty')
+    const privkey = useInput('Client Private Key', 'Cannot be empty')
     const onSubmitHandler = async (e) => {
         e.preventDefault()
         if (
