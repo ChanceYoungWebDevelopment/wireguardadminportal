@@ -29,7 +29,7 @@ app.post('/addpeer', async (req, res) => {
         ...execservice.generateKeys(temp_peer.name),
     })
     execservice.grantPeerAccess(
-        new_client_info.pub_key,
+        new_client_info.client_pubkey,
         new_client_info.ip_address
     )
     // const vpnpubkey = execservice.getVpnPubKey()
