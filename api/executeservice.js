@@ -33,7 +33,28 @@ const generateKeys = (client_name) => {
 const getVpnPubKey = () => {
     return execSync('sudo cat /etc/wireguard/publickey', {
         uid: 1000,
-    }).toString()
+    })
+        .toString()
+        .trim()
+}
+
+const createConfigFile = (config) => {
+    execSync(
+        `echo '
+    [Interface]
+    PrivateKey = ${config.client_privkey}
+    Address = ${config.ip_address}/24
+    DNS = 8.8.8.8
+
+    [Peer]
+    PublicKey = ${getVpnPubKey()}
+    AllowedIPs = ${config.allowed_ip_range}/0
+    Endpoint = 198.58.118.71:51820
+    ' > ~/wireguardadmininfo/clientkeys/${config.client_name}/${
+            config.client_name
+        }.conf`,
+        { uid: 1000 }
+    )
 }
 
 const grantPeerAccess = (peer_pubkey, peer_address) => {
@@ -50,7 +71,7 @@ module.exports = {
     getWireguardStatus,
     restartWireguardService,
     generateKeys,
-    getVpnPubKey,
     grantPeerAccess,
     revokePeerAccess,
+    createConfigFile,
 }
