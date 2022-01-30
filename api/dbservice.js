@@ -1,6 +1,6 @@
 const pool = require('./pgPoolCreator')
 
-const addPeerData = (passed_peer) => {
+const addPeerData = async (passed_peer) => {
     const peer = {
         ...passed_peer,
         date: `${new Date().toISOString().slice(0, 10)}`,
@@ -17,7 +17,7 @@ const addPeerData = (passed_peer) => {
         peer.privkey,
     ]
 
-    const results = pool.query(query, values)
+    const results = await pool.query(query, values)
     console.log(results.rows)
     return results.rows[0]
 }

@@ -4,7 +4,6 @@ const execservice = require('./executeservice')
 
 // define the home page route
 router.get('/', function (req, res) {
-    console.log('hit wgservice/')
     res.send(execservice.getWireguardStatus())
 })
 
