@@ -35,12 +35,13 @@ const getVpnPubKey = () => {
 
 const grantPeerAccess = (peer_pubkey, peer_address) => {
     execSync(
-        `sudo wg set wg0 peer ${peer_pubkey} allowed-ips ${peer_address}/32`
+        `sudo wg set wg0 peer ${peer_pubkey} allowed-ips ${peer_address}/32`,
+        { uid: 1000 }
     )
 }
 
 const revokePeerAccess = (peer_pubkey) => {
-    execSync(`sudo wg set wg0 peer ${peer_pubkey} remove`)
+    execSync(`sudo wg set wg0 peer ${peer_pubkey} remove`, { uid: 1000 })
 }
 module.exports = {
     getWireguardStatus,
