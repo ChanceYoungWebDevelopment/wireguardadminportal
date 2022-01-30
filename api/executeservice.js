@@ -50,7 +50,7 @@ const createConfigFile = (config) => {
     PublicKey = ${getVpnPubKey()}
     AllowedIPs = ${config.allowed_ip_range}/0
     Endpoint = 198.58.118.71:51820
-    ' > ~/wireguardadmininfo/clientkeys/${config.client_name}/${
+    ' > ~/wireguardadmininfo/clientkeys/${config.client_name.toLowerCase()}/${
             config.client_name
         }.conf`,
         { uid: 1000 }

@@ -31,7 +31,9 @@ app.post('/addpeer', async (req, res) => {
     )
     execservice.createConfigFile({ ...new_client_info })
     res.sendFile(
-        `../../wireguardadmininfo/clientkeys/${new_client_info.client_name}/${new_client_info.client_name}.conf`
+        `../../wireguardadmininfo/clientkeys/${new_client_info.client_name.toLowerCase()}/${
+            new_client_info.client_name
+        }.conf`
     )
 })
 
