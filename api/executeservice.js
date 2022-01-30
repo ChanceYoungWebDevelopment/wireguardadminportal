@@ -24,7 +24,10 @@ const generateKeys = (client_name) => {
         { uid: 1000 }
     )
 
-    return { pubkey: pubkey.toString(), privkey: privkey.toString() }
+    return {
+        pubkey: pubkey.toString().trim(),
+        privkey: privkey.toString().trim(),
+    }
 }
 
 const getVpnPubKey = () => {
