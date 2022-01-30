@@ -24,19 +24,27 @@ const generateKeys = (client_name) => {
         { uid: 1000 }
     )
 
-    console.log(privkey.toString())
-    console.log(pubkey.toString())
-
     return { pubkey: pubkey.toString(), privkey: privkey.toString() }
 }
 
-// const grantPeerAccess = (peer_to_add) => {
-//Needs:
-//publickey of client
-//ADDRESS of client
+const getVpnPubKey = () => {
+    return execSync('sudo cat /etc/wireguard/publickey', {
+        uid: 1000,
+    }).toString()
+}
 
-//     return
-// }
+const grantPeerAccess = (peer_pubkey, peer_address) => {
+    execSync(`wg set wg0 peer ${peer_pubkey} allowed-ips ${peer_address}`)
+}
 
-// const revokePeerAccess = () => {}
-module.exports = { getWireguardStatus, restartWireguardService, generateKeys }
+const revokePeerAccess = (peer_pubkey) => {
+    execSync(`wg set wg0 peer ${peer_pubkey} remove`)
+}
+module.exports = {
+    getWireguardStatus,
+    restartWireguardService,
+    generateKeys,
+    getVpnPubKey,
+    grantPeerAccess,
+    revokePeerAccess,
+}

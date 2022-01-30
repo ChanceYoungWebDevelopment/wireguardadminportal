@@ -17,20 +17,23 @@ app.post('/addpeer', async (req, res) => {
         ip: req.body.ip_address,
         allowed: req.body.allowed_ip_range,
     }
-    const peer = { ...temp_peer, ...execservice.generateKeys(temp_peer.name) }
-    console.log(peer)
     // mkdir peer.name
     // $ wg genkey | tee peer.name/privatekey | wg pubkey > peer.name/publickey
     // peer.privkey = stdout cat > peer.name/privatekey
     // peer.pubkey = stdout cat > peer.name/publickey
 
     //wrap in try/catch block
-    // const new_client_info = await dbservice.addPeerData(peer)
-    // const vpnpubkey = exec('sudo cat /etc/wireguard/publickey')
+    const new_client_info = await dbservice.addPeerData({
+        ...temp_peer,
+        ...execservice.generateKeys(temp_peer.name),
+    })
+    execservice.grantPeerAccess(
+        new_client_info.pub_key,
+        new_client_info.ip_address
+    )
+    // const vpnpubkey = execservice.getVpnPubKey()
 
     //TODO:
-    // exec(wg set wg0 peer pulled.publickey --remove allowed ips pulled.allowed_ips etc...)
-
     // generate the client configfile:
     // Handlebars.compile(sometemplatefile)
     // template({VPN_IP: process.env.WHATEVER, })
