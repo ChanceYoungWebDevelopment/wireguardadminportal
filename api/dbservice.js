@@ -18,7 +18,6 @@ const addPeerData = async (passed_peer) => {
     ]
 
     const results = await pool.query(query, values)
-    console.log(results.rows)
     return results.rows[0]
 }
 
