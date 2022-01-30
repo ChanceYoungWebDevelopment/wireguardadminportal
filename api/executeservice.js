@@ -24,10 +24,10 @@ const generateKeys = (client_name) => {
         { uid: 1000 }
     )
 
-    console.log(privkey)
-    console.log(pubkey)
+    console.log(privkey.toString())
+    console.log(pubkey.toString())
 
-    return { pubkey, privkey }
+    return { pubkey: pubkey.toString(), privkey: privkey.toString() }
 }
 
 // const grantPeerAccess = (peer_to_add) => {
