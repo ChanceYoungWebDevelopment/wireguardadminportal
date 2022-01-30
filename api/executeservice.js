@@ -35,7 +35,7 @@ const getVpnPubKey = () => {
 
 const grantPeerAccess = (peer_pubkey, peer_address) => {
     execSync(
-        `sudo wg set wg0 peer ${peer_pubkey} allowed-ips ${peer_address}/32`,
+        `sudo wg set wg0 peer ${peer_pubkey} allowed-ips=${peer_address}/32`,
         { uid: 1000 }
     )
 }
