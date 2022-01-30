@@ -1,6 +1,12 @@
 import axios from 'axios'
+import FileDownload from 'js-file-download'
 export const addNewPeer = async (newPeer) => {
-    const results = await axios.post('/api/addpeer', { ...newPeer })
+    const results = await axios.post(
+        '/api/addpeer',
+        { ...newPeer },
+        { responseType: 'blob' }
+    )
+    FileDownload(results.data, `${newPeer.client_name}.conf`)
     if (results.status === 200) return true
     else return false
 }
