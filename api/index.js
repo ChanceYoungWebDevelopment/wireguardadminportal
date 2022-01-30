@@ -3,6 +3,7 @@ const app = express()
 const port = process.env.WGA_PORT || 3500
 const wgservice = require('./wgservicerouter')
 const execservice = require('./executeservice')
+const dbservice = require('./dbservice')
 
 app.use(express.json())
 app.use('/wgservice', wgservice)
