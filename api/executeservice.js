@@ -24,6 +24,9 @@ const generateKeys = (client_name) => {
         { uid: 1000 }
     )
 
+    console.log(privkey)
+    console.log(pubkey)
+
     return { pubkey, privkey }
 }
 
