@@ -21,3 +21,9 @@ export const showWireguardStatus = async () => {
     const results = await axios.get('/api/wgservice')
     if (results.status === 200) return results.data
 }
+
+export const removePeerAcess = async (clientname) => {
+    const results = await axios.get('/api/removepeer?client_name=' + clientname)
+    if (results.status === 200) return true
+    else return false
+}

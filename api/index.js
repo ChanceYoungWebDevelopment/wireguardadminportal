@@ -5,6 +5,11 @@ const wgservice = require('./wgservicerouter')
 const execservice = require('./executeservice')
 const dbservice = require('./dbservice')
 
+//TODO:
+//Add check to see if peer exists in db
+//remove clientkeys folder when access revoked
+//
+
 app.use(express.json())
 app.use('/wgservice', wgservice)
 
@@ -35,6 +40,11 @@ app.post('/addpeer', async (req, res) => {
             new_client_info.client_name
         }.conf`
     )
+})
+
+app.get('/removepeer', async (req, res) => {
+    dbservice.getPeerById(req.body.client_name)
+    execservice.revokePeerAccess()
 })
 
 app.listen(port, () => {
