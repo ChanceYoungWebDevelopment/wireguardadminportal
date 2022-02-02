@@ -4,7 +4,7 @@ const port = process.env.WGA_PORT || 3500
 const wgservice = require('./wgservicerouter')
 const execservice = require('./executeservice')
 const dbservice = require('./dbservice')
-const { v4 } = require('uuidv4')
+const { v4: uuidv4 } = require('uuid')
 
 //TODO:
 //Add check to see if peer exists in db
@@ -25,7 +25,7 @@ app.post('/addpeer', async (req, res) => {
         allowed: req.body.allowed_ip_range,
     }
 
-    const client_uuid = v4()
+    const client_uuid = uuidv4()
     //TODO:
     //wrap in try/catch block
     const new_client_info = await dbservice.addPeerData({
