@@ -25,7 +25,7 @@ app.post('/addpeer', async (req, res) => {
         allowed: req.body.allowed_ip_range,
     }
 
-    const client_uuid = uuid()
+    const client_uuid = v4()
     //TODO:
     //wrap in try/catch block
     const new_client_info = await dbservice.addPeerData({
