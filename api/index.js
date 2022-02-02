@@ -24,11 +24,13 @@ app.post('/addpeer', async (req, res) => {
         allowed: req.body.allowed_ip_range,
     }
 
+    const client_uuid = uuid()
     //TODO:
     //wrap in try/catch block
     const new_client_info = await dbservice.addPeerData({
         ...temp_peer,
-        ...execservice.generateKeys(temp_peer.name),
+        client_uuid,
+        ...execservice.generateKeys(client_uuid),
     })
     execservice.grantPeerAccess(
         new_client_info.client_pubkey,
@@ -36,9 +38,7 @@ app.post('/addpeer', async (req, res) => {
     )
     execservice.createConfigFile({ ...new_client_info })
     res.sendFile(
-        `/home/chance/wireguardadmininfo/clientkeys/${new_client_info.client_name.toLowerCase()}/${
-            new_client_info.client_name
-        }.conf`
+        `/home/chance/wgainfo/clientkeys/${new_client_info.client_uuid}/client_configuration.conf`
     )
 })
 
