@@ -1,5 +1,4 @@
 const { execSync } = require('child_process')
-const { uuid } = require('uuidv4')
 
 const getWireguardStatus = () => {
     return execSync('systemctl status wg-quick@wg0.service', {
