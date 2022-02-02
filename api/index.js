@@ -4,7 +4,7 @@ const port = process.env.WGA_PORT || 3500
 const wgservice = require('./wgservicerouter')
 const execservice = require('./executeservice')
 const dbservice = require('./dbservice')
-const { uuid } = require('uuidv4')
+const { v4 } = require('uuidv4')
 
 //TODO:
 //Add check to see if peer exists in db
