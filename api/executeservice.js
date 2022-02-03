@@ -1,6 +1,5 @@
 const { execSync } = require('child_process')
-const workingdirectory =
-    '/home/chance/actions-runner/main/wireguardadminportal/wireguardadminportal'
+const workingdirectory = '/home/chance/'
 const userObj = {
     uid: 1000,
     cwd: workingdirectory,
@@ -16,7 +15,10 @@ const restartWireguardService = () =>
     execSync('sudo systemctl restart wg-quick@wg0.service', { uid: 1000 })
 
 const generateKeys = (client_uuid) => {
-    execSync(`./api/wgkeygen.sh ${client_uuid}`, userObj)
+    execSync(
+        `/home/chance/actions-runner/wireguardadminportal/wireguardadminportal/api/wgkeygen.sh ${client_uuid}`,
+        userObj
+    )
 
     const privkey = execSync(
         `cat ./clientkeys/${client_uuid}/privatekey`,
