@@ -3,8 +3,8 @@ apps:
     exec_mode: 'fork'
     name: 'wgadminapi'
     env:
-      WGA_POSTGRES_USER: "postgres"  
+      WGA_POSTGRES_USER: "wg_admin"  
       WGA_POSTGRES_HOST: "localhost"
       WGA_POSTGRES_DB: "postgres"
-      WGA_POSTGRES_PASSWORD: "password"
+      WGA_POSTGRES_PASSWORD: "wireguardworstwaffle"
       WGA_PORT: 3500
