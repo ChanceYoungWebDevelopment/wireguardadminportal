@@ -39,7 +39,7 @@ app.post('/addpeer', async (req, res) => {
     )
     execservice.createConfigFile({ ...new_client_info })
     res.sendFile(
-        `/home/chance/wgainfo/clientkeys/${new_client_info.client_uuid}/client_configuration.conf`
+        `/home/chance/clientkeys/${new_client_info.client_uuid}/client_configuration.conf`
     )
 })
 
