@@ -28,8 +28,7 @@ jobs:
       #git secret reveal
       - name: Run pm2 setup for api
         run: |
-          
-          cd wireguardadminportal/api
+          cd wireguardadminportal/wireguardadminportal/api
           chmod 755 wgkeygen.sh
           npm install --silent
           pm2 start process.yml
