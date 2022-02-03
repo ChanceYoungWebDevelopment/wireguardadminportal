@@ -10,16 +10,16 @@ const restartWireguardService = () =>
     execSync('sudo systemctl restart wg-quick@wg0.service', { uid: 1000 })
 
 const generateKeys = (client_uuid) => {
-    execSync(`~/wireguardadminportal/api/wgkeygen.sh ${client_uuid}`, {
+    execSync(`./wireguardadminportal/api/wgkeygen.sh ${client_uuid}`, {
         uid: 1000,
     })
 
     const privkey = execSync(
-        `cat ~/wgainfo/clientkeys/${client_uuid}/privatekey`,
+        `cat ./wgainfo/clientkeys/${client_uuid}/privatekey`,
         { uid: 1000 }
     )
     const pubkey = execSync(
-        `cat ~/wgainfo/clientkeys/${client_uuid}/publickey`,
+        `cat ./wgainfo/clientkeys/${client_uuid}/publickey`,
         { uid: 1000 }
     )
 
@@ -49,7 +49,7 @@ const createConfigFile = (config) => {
     PublicKey = ${getVpnPubKey()}
     AllowedIPs = ${config.allowed_ip_range}/0
     Endpoint = 198.58.118.71:51820
-    ' > ~/wgainfo/clientkeys/${config.client_uuid}/client_configuration.conf`,
+    ' > ./wgainfo/clientkeys/${config.client_uuid}/client_configuration.conf`,
         { uid: 1000 }
     )
 }
