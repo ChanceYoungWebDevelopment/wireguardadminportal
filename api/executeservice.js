@@ -16,7 +16,7 @@ const restartWireguardService = () =>
 
 const generateKeys = (client_uuid) => {
     execSync(
-        `/home/chance/actions-runner/wireguardadminportal/wireguardadminportal/api/wgkeygen.sh ${client_uuid}`,
+        `./actions-runner/main/wireguardadminportal/wireguardadminportal/api/wgkeygen.sh ${client_uuid}`,
         userObj
     )
 
