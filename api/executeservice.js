@@ -1,4 +1,9 @@
 const { execSync } = require('child_process')
+const workingdirectory = '/home/chance/actions-runner/main/wireguardadminportal'
+const userObj = {
+    uid: 1000,
+    cwd: workingdirectory,
+}
 
 const getWireguardStatus = () => {
     return execSync('systemctl status wg-quick@wg0.service', {
@@ -10,17 +15,15 @@ const restartWireguardService = () =>
     execSync('sudo systemctl restart wg-quick@wg0.service', { uid: 1000 })
 
 const generateKeys = (client_uuid) => {
-    execSync(`./wireguardadminportal/api/wgkeygen.sh ${client_uuid}`, {
-        uid: 1000,
-    })
+    execSync(`./wireguardadminportal/api/wgkeygen.sh ${client_uuid}`, userObj)
 
     const privkey = execSync(
         `cat ./wgainfo/clientkeys/${client_uuid}/privatekey`,
-        { uid: 1000 }
+        userObj
     )
     const pubkey = execSync(
         `cat ./wgainfo/clientkeys/${client_uuid}/publickey`,
-        { uid: 1000 }
+        userObj
     )
 
     return {
@@ -50,7 +53,7 @@ const createConfigFile = (config) => {
     AllowedIPs = ${config.allowed_ip_range}/0
     Endpoint = 198.58.118.71:51820
     ' > ./wgainfo/clientkeys/${config.client_uuid}/client_configuration.conf`,
-        { uid: 1000 }
+        userObj
     )
 }
 
