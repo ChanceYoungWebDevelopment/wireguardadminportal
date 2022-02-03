@@ -28,7 +28,7 @@ jobs:
       #git secret reveal
       - name: Run pm2 setup for api
         run: |
-          chmod -R 755 api
+          chmod -R 755 ./api
           cd api
           npm install --silent
           pm2 start process.yml
