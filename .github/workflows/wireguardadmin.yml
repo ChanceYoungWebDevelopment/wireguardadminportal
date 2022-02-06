@@ -23,6 +23,11 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+        env:
+          WGA_POSTGRES_USER: ${{ secrets.WGAPU }}
+          WGA_POSTGRES_HOST: ${{ secrests.WGAPH }}
+          WGA_POSTGRES_DB: ${{ secrets.WGADB }}
+          WGA_POSTGRES_PASSWORD: ${{ secrets.WGAPASS }}
 
       # Runs a set of commands using the runners shell
       #git secret reveal
