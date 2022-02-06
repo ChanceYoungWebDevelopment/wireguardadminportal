@@ -25,7 +25,7 @@ jobs:
       - uses: actions/checkout@v2
         env:
           WGA_POSTGRES_USER: ${{ secrets.WGAPU }}
-          WGA_POSTGRES_HOST: ${{ secrests.WGAPH }}
+          WGA_POSTGRES_HOST: ${{ secrets.WGAPH }}
           WGA_POSTGRES_DB: ${{ secrets.WGADB }}
           WGA_POSTGRES_PASSWORD: ${{ secrets.WGAPASS }}
 
