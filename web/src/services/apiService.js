@@ -29,6 +29,7 @@ export const removePeerAcess = async (clientname) => {
 }
 
 export const addNewUser = async (userinfo) => {
+    console.log(userinfo)
     const results = await axios.post('/api/addnewuser', { ...userinfo })
     return results.status == 200
 }

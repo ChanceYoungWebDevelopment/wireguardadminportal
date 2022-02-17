@@ -51,6 +51,7 @@ app.get('/removepeer', async (req, res) => {
 })
 
 app.post('/addnewuser', (req, res) => {
+    console.log(req.body)
     const userInfo = req.body
     const salt = bcrypt.genSalt(10, function (err, salt) {
         return salt
