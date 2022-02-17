@@ -21,7 +21,10 @@ const NewUserForm = () => {
         e.preventDefault()
         if ((username.isValid, password.isValid)) {
             setWasSubmitted(true)
-            const success = await addNewUser({ username, password })
+            const success = await addNewUser({
+                username: username.value,
+                password: password.value,
+            })
             if (success) {
                 setIsSuccess(true)
             } else {
