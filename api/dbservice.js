@@ -22,7 +22,7 @@ const addPeerData = async (passed_peer) => {
     return results.rows[0]
 }
 
-const addNewUser = (info) => {
+const addNewUser = async (info) => {
     const query = `insert into portfolio.`
     const values = [info.username, info.hashed_password, info.salt]
     const dbresult = await pool.query(query, values)
