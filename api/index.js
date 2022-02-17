@@ -5,6 +5,7 @@ const wgservice = require('./wgservicerouter')
 const execservice = require('./executeservice')
 const dbservice = require('./dbservice')
 const { v4: uuidv4 } = require('uuid')
+const bcrypt = require('bcrypt')
 
 //TODO:
 //Add check to see if peer exists in db
@@ -46,6 +47,28 @@ app.post('/addpeer', async (req, res) => {
 app.get('/removepeer', async (req, res) => {
     dbservice.getPeerById(req.body.client_name)
     execservice.revokePeerAccess()
+    res.sendStatus(200)
+})
+
+app.post('/adduser', (req, res) => {
+    const userInfo = req.body
+    const salt = bcrypt.genSalt(10, function (err, salt) {
+        return salt
+    })
+    const hashed_password = bcrypt.hash(
+        userInfo.password,
+        salt,
+        function (err, hash) {
+            return hash
+        }
+    )
+    const encryptedInfo = {
+        username: userInfo.username,
+        hashed_password,
+        password_salt: salt,
+    }
+    dbservice.addNewUser(encryptedInfo)
+    res.sendStatus(200)
 })
 
 app.listen(port, () => {

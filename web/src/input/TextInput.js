@@ -1,4 +1,4 @@
-export default function TextInput({ inputControl }) {
+export default function TextInput({ inputControl, type }) {
     const inputClasses = inputControl.hasError
         ? 'form-control is-invalid'
         : 'form-control'
@@ -7,7 +7,7 @@ export default function TextInput({ inputControl }) {
         <div className="col form-floating mb-3">
             <input
                 className={inputClasses}
-                type="text"
+                type={type || 'text'}
                 id={inputControl.name}
                 value={inputControl.value}
                 onChange={inputControl.valueChangeHandler}
