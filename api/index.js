@@ -50,19 +50,13 @@ app.get('/removepeer', async (req, res) => {
     res.sendStatus(200)
 })
 
-app.post('/addnewuser', (req, res) => {
+app.post('/addnewuser', async (req, res) => {
     console.log(req.body)
     const userInfo = req.body
-    const salt = bcrypt.genSalt(10, function (err, salt) {
-        return salt
-    })
-    const hashed_password = bcrypt.hash(
-        userInfo.password,
-        salt,
-        function (err, hash) {
-            return hash
-        }
-    )
+    const salt = await bcrypt.genSalt(10)
+    const hashed_password = await bcrypt.hash(userInfo.password, salt)
+    console.log(salt)
+    console.log(hashed_password)
     const encryptedInfo = {
         username: userInfo.username,
         hashed_password,
