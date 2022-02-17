@@ -50,7 +50,7 @@ app.get('/removepeer', async (req, res) => {
     res.sendStatus(200)
 })
 
-app.post('/adduser', (req, res) => {
+app.post('/addnewuser', (req, res) => {
     const userInfo = req.body
     const salt = bcrypt.genSalt(10, function (err, salt) {
         return salt
